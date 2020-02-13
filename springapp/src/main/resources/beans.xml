@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.practice" />
+	<!-- <context:annotation-config/> -->
+
+	<bean id="player" class="com.practice.springapp.Player">
+		<constructor-arg value="Virat Kohli"></constructor-arg>
+		<constructor-arg value="Cricket"></constructor-arg>
+		<constructor-arg ref="address"></constructor-arg>
+	</bean>
+	
+	<bean id="player1" class="com.practice.springapp.Player" autowire="constructor">
+		<property name="playerName" value="M.S. Dhoni"></property>
+		<property name="sportName" value="Cricket"></property>
+		<!-- <property name="address" ref="address"></property> -->
+	</bean>
+
+	
+	
+	<bean id="address" class="com.practice.springapp.Address" >
+		<property name="country" value="India"></property>
+		<property name="state" value="Tamilnadu"></property>
+	</bean>
+	
+	
+	<bean id="address1" class="com.practice.springapp.Address" primary="true">
+		<!-- <property name="country" value="India"></property>
+		<property name="state" value="Ranchi"></property> -->
+		<constructor-arg value="India"></constructor-arg>
+		<constructor-arg value="Ranchi"></constructor-arg>
+	</bean>
+	
+	<bean id="collectionDI" class="com.practice.springapp.CollectionDI">
+		<property name="list">
+			<list>
+				<value>Chennai</value>
+				<value>Madurai</value>
+				<value>Coimbatore</value>
+				<value>Trichy</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>India</value>
+				<value>America</value>
+				<value>Australia</value>
+				<value>France</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="1" value="India" />
+				<entry key="2" value="America" />
+				<entry key="3" value="Australia" />
+				<entry key="4" value="France" />
+			</map>
+		</property>
+		<property name="prop">
+			<props>
+				<prop key="1">India</prop>
+				<prop key="2">America</prop>
+				<prop key="3">Australia</prop>
+				<prop key="4"> France</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
